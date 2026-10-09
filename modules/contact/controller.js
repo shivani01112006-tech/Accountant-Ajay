@@ -8,14 +8,25 @@ function getHash(ip) {
   return crypto.createHash('sha256').update(ip + config.sessionSecret).digest('hex');
 }
 
-exports.showForm = (req, res) => {
-  const services = serviceRepository.getAll();
-  res.render('pages/contact', { title: 'Contact | Ajay Singla', services, currentPath: '/contact', query: req.query });
+exports.showForm = async (req, res) => {
+  try {
+    const services = await serviceRepository.getAll();
+    res.render('pages/contact', { title: 'Contact | Ajay Singla', services, currentPath: '/contact', query: req.query });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Server error');
+  }
 };
 
-exports.submitForm = (req, res) => {
+exports.submitForm = async (req, res) => {
+  let services = [];
+  try {
+    services = await serviceRepository.getAll();
+  } catch (err) {
+    console.error(err);
+  }
+
   const { name, email, phone, service_id, message, website } = req.body;
-  const services = serviceRepository.getAll();
 
   // Honeypot check
   if (website) {
@@ -44,7 +55,7 @@ exports.submitForm = (req, res) => {
     const ip = req.ip || req.connection.remoteAddress;
     const ip_hash = getHash(ip);
     
-    repository.createSubmission({
+    await repository.createSubmission({
       name: name.trim(),
       email: email.trim(),
       phone: phone.trim(),

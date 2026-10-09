@@ -71,11 +71,11 @@ app.get('/health', (req, res) => {
 });
 
 // Home Page: renders starter home view with services from DB
-app.get('/', (req, res, next) => {
+app.get('/', async (req, res, next) => {
   try {
     let services = [];
     try {
-      services = serviceRepository.getAll();
+      services = await serviceRepository.getAll();
     } catch (dbErr) {
       console.warn('[SERVER] Could not load services from DB:', dbErr.message);
     }
@@ -104,9 +104,9 @@ app.use(session({
 }));
 
 app.get('/about', (req, res) => res.render('pages/about', { title: 'About | Ajay Singla', currentPath: '/about' }));
-app.get('/services', (req, res) => {
+app.get('/services', async (req, res) => {
   let services = [];
-  try { services = serviceRepository.getAll(); } catch(e) {}
+  try { services = await serviceRepository.getAll(); } catch(e) {}
   res.render('pages/services', { title: 'Services | Ajay Singla', services, currentPath: '/services' });
 });
 
