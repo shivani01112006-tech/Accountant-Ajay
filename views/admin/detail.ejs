@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Submission Detail | Ajay Singla</title>
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <style>
+    body { background: var(--bg-2); }
+    .admin-nav { background: var(--surface); padding: 16px 24px; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; }
+    .detail-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 24px; margin-top: 24px; }
+    @media (max-width: 768px) { .detail-grid { grid-template-columns: 1fr; } }
+    .info-group { margin-bottom: 16px; }
+    .info-group label { display: block; font-size: 0.85rem; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 4px; }
+    .info-group div { font-size: 1.05rem; }
+    .note-item { padding: 12px; border-bottom: 1px solid var(--line); }
+    .note-item:last-child { border-bottom: none; }
+  </style>
+</head>
+<body>
+  <nav class="admin-nav">
+    <div style="font-weight: 700;">
+      <a href="/admin/dashboard" style="color: inherit; text-decoration: none;">&larr; Back to Dashboard</a>
+    </div>
+    <div>
+      <a href="/admin/logout" class="btn btn-ghost" style="padding: 6px 12px; font-size: 0.85rem;">Logout</a>
+    </div>
+  </nav>
+
+  <main class="container" style="padding: 40px 24px;">
+    <div style="display: flex; justify-content: space-between; align-items: flex-end;">
+      <h2>Submission #<%= submission.id %></h2>
+      <form action="/admin/submissions/<%= submission.id %>/status" method="POST" style="display: flex; gap: 8px; align-items: center;">
+        <select name="status" class="select" style="padding: 6px;">
+          <option value="new" <%= submission.status === 'new' ? 'selected' : '' %>>New</option>
+          <option value="read" <%= submission.status === 'read' ? 'selected' : '' %>>Read</option>
+          <option value="replied" <%= submission.status === 'replied' ? 'selected' : '' %>>Replied</option>
+          <option value="archived" <%= submission.status === 'archived' ? 'selected' : '' %>>Archived</option>
+        </select>
+        <button type="submit" class="btn btn-primary" style="padding: 6px 12px;">Update</button>
+      </form>
+    </div>
+
+    <div class="detail-grid">
+      <div>
+        <div class="card card-light">
+          <h3>Contact Details</h3>
+          <hr style="margin: 16px 0; border: none; border-top: 1px solid var(--line);">
+          <div class="grid grid-2">
+            <div class="info-group">
+              <label>Name</label>
+              <div><%= submission.name %></div>
+            </div>
+            <div class="info-group">
+              <label>Date</label>
+              <div><%= new Date(submission.created_at).toLocaleString() %></div>
+            </div>
+            <div class="info-group">
+              <label>Email</label>
+              <div><a href="mailto:<%= submission.email %>" class="btn-link"><%= submission.email %></a></div>
+            </div>
+            <div class="info-group">
+              <label>Phone</label>
+              <div><a href="tel:<%= submission.phone %>" class="btn-link"><%= submission.phone %></a></div>
+            </div>
+          </div>
+          
+          <div class="info-group mt-4">
+            <label>Service</label>
+            <div><%= submission.service_title || 'General Enquiry' %></div>
+          </div>
+
+          <div class="info-group mt-4">
+            <label>Message</label>
+            <div style="background: var(--bg-2); padding: 16px; border-radius: 4px; white-space: pre-wrap;"><%= submission.message %></div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="card card-light">
+          <h3>Internal Notes</h3>
+          <hr style="margin: 16px 0; border: none; border-top: 1px solid var(--line);">
+          
+          <form action="/admin/submissions/<%= submission.id %>/note" method="POST">
+            <textarea name="note" class="textarea" rows="3" placeholder="Add a private note..." required></textarea>
+            <button type="submit" class="btn btn-primary btn-block mt-2">Save Note</button>
+          </form>
+
+          <div class="mt-4" style="background: var(--bg-2); border-radius: 4px; overflow: hidden;">
+            <% if (notes && notes.length > 0) { %>
+              <% notes.forEach(n => { %>
+                <div class="note-item">
+                  <div style="font-size: 0.85rem; color: var(--ink-soft); display: flex; justify-content: space-between;">
+                    <span><strong><%= n.username %></strong></span>
+                    <span><%= new Date(n.created_at).toLocaleString() %></span>
+                  </div>
+                  <div class="mt-2 text-sm"><%= n.note %></div>
+                </div>
+              <% }) %>
+            <% } else { %>
+              <div class="note-item text-center color-ink-soft text-sm">No notes yet.</div>
+            <% } %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

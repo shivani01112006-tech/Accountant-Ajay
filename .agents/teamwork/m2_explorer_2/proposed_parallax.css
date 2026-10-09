@@ -1,0 +1,324 @@
+/**
+ * Ajay Singla Portfolio - Parallax, Motion & Accessibility Stylesheet
+ * Path: public/css/parallax.css
+ * 
+ * Milestone 2: Design System & Styling
+ * Specifications:
+ * - Parallax Hero: 0.2x–0.6x scroll translation via translate3d, will-change: transform
+ * - Mobile Viewports (<768px): Parallax completely disabled (transform: none, will-change: auto)
+ * - Section Reveals: Fade-up 24px, 600ms cubic-bezier(0.2, 0.7, 0.2, 1) via IntersectionObserver
+ * - Reduced Motion: Complete prefers-reduced-motion: reduce overrides
+ * - Accessibility: High-contrast focus outlines, forced-colors mode, screen reader support
+ */
+
+/* ==========================================================================
+   1. Motion Tokens & Custom Properties
+   ========================================================================== */
+:root {
+  --reveal-distance: 24px;
+  --reveal-duration: 600ms;
+  --reveal-timing-function: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --btn-lift-distance: -2px;
+  --card-lift-distance: -4px;
+  --focus-outline-width: 2px;
+  --focus-outline-offset: 2px;
+}
+
+/* ==========================================================================
+   2. Parallax Hero Architecture
+   ========================================================================== */
+
+/* Hero Container */
+.hero-parallax-container {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--bg-0, #0B0B0C);
+  color: var(--text-hi, #F5F5F5);
+  min-height: 540px;
+  display: flex;
+  align-items: center;
+}
+
+/* Parallax Canvas (Extended viewport to prevent edge clipping during translation) */
+.parallax-canvas {
+  position: absolute;
+  top: -15%;
+  left: 0;
+  width: 100%;
+  height: 130%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* Base Parallax Layer */
+.parallax-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Layer 1: Deep Precision Grid (Speed: 0.2x)
+   Subtle monochromatic coordinate grid evoking chartered precision */
+.parallax-layer-grid {
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 48px 48px;
+  background-position: center center;
+  opacity: 0.8;
+}
+
+/* Layer 2: Mid-ground Architectural Geometry & Balance Vectors (Speed: 0.4x)
+   Monochromatic angled vectors and accounting rule lines */
+.parallax-layer-accents {
+  background-image:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(45deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 144px 144px;
+  background-position: 24px 24px;
+  opacity: 0.6;
+}
+
+/* Layer 3: Foreground Atmospheric Glow / Radial Spotlight (Speed: 0.6x)
+   Soft neutral radial light centered over the brand statement */
+.parallax-layer-glow {
+  background: radial-gradient(
+    circle at 75% 35%,
+    rgba(255, 255, 255, 0.06) 0%,
+    rgba(255, 255, 255, 0.015) 35%,
+    transparent 70%
+  );
+  opacity: 0.9;
+}
+
+/* Hero Foreground Content
+   Must sit strictly on top of parallax layers with high z-index and intact pointer events */
+.hero-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding-top: var(--space-8, 64px);
+  padding-bottom: var(--space-8, 64px);
+}
+
+@media (min-width: 768px) {
+  .hero-content {
+    padding-top: var(--space-10, 96px);
+    padding-bottom: var(--space-10, 96px);
+  }
+}
+
+/* ==========================================================================
+   3. Mobile Parallax Disablement (<768px)
+   ========================================================================== */
+@media (max-width: 767.98px) {
+  .parallax-canvas {
+    top: 0;
+    height: 100%;
+  }
+
+  .parallax-layer {
+    transform: none !important;
+    will-change: auto !important;
+  }
+}
+
+/* ==========================================================================
+   4. Section Scroll Reveals (IntersectionObserver)
+   ========================================================================== */
+
+/* Elements waiting to be revealed */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translate3d(0, var(--reveal-distance), 0);
+  transition: 
+    opacity var(--reveal-duration) var(--reveal-timing-function),
+    transform var(--reveal-duration) var(--reveal-timing-function);
+  will-change: opacity, transform;
+}
+
+/* Active revealed state */
+.reveal-on-scroll.is-revealed {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  will-change: auto; /* Free GPU compositing layer memory once settled */
+}
+
+/* Stagger Delays for Cards, Grids, and Sequential Elements */
+.reveal-delay-1 {
+  transition-delay: 100ms;
+}
+
+.reveal-delay-2 {
+  transition-delay: 200ms;
+}
+
+.reveal-delay-3 {
+  transition-delay: 300ms;
+}
+
+.reveal-delay-4 {
+  transition-delay: 400ms;
+}
+
+/* No-JS Graceful Fallback:
+   If JavaScript fails or is disabled, content must NEVER remain hidden. */
+html:not(.js) .reveal-on-scroll {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* ==========================================================================
+   5. Interactive Micro-Animations & Hover States
+   ========================================================================== */
+
+/* Button Hover Lift (2px) */
+.btn {
+  transition: 
+    transform var(--transition-fast, 150ms ease),
+    background-color var(--transition-fast, 150ms ease),
+    border-color var(--transition-fast, 150ms ease),
+    box-shadow var(--transition-fast, 150ms ease);
+}
+
+.btn:hover {
+  transform: translateY(var(--btn-lift-distance));
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+/* Card Hover Elevation (4px Lift) */
+.card {
+  transition: 
+    transform var(--transition-base, 250ms ease),
+    box-shadow var(--transition-base, 250ms ease),
+    border-color var(--transition-base, 250ms ease),
+    background-color var(--transition-base, 250ms ease);
+}
+
+.card:hover {
+  transform: translateY(var(--card-lift-distance));
+}
+
+.card-dark:hover {
+  border-color: #3E3E42;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.45);
+}
+
+.card-light:hover {
+  border-color: #C5C5C0;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* ==========================================================================
+   6. Accessibility & Motion Preference: prefers-reduced-motion
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  html {
+    scroll-behavior: auto !important;
+  }
+
+  /* Parallax completely disabled */
+  .parallax-layer {
+    transform: none !important;
+    will-change: auto !important;
+    transition: none !important;
+  }
+
+  /* Scroll reveals displayed immediately */
+  .reveal-on-scroll {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    will-change: auto !important;
+  }
+
+  /* Interactive hover transforms disabled */
+  .btn:hover,
+  .btn:active,
+  .card:hover {
+    transform: none !important;
+  }
+}
+
+/* ==========================================================================
+   7. Screen Reader & High-Contrast Hardening
+   ========================================================================== */
+
+/* Skip to Content Link (Visually hidden until focused by keyboard) */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: var(--space-4, 16px);
+  background-color: var(--surface, #FFFFFF);
+  color: var(--ink, #111113);
+  padding: 8px 16px;
+  border-radius: var(--radius-sm, 4px);
+  font-weight: 600;
+  font-size: var(--text-sm, 14px);
+  z-index: 9999;
+  text-decoration: none;
+  box-shadow: var(--shadow-light, 0 10px 30px rgba(0,0,0,0.08));
+  transition: top var(--transition-fast, 150ms ease);
+}
+
+.skip-link:focus {
+  top: var(--space-4, 16px);
+  outline: var(--focus-outline-width) solid var(--accent, #FFFFFF);
+  outline-offset: var(--focus-outline-offset);
+}
+
+/* Accessible Keyboard Focus Ring */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+.btn:focus-visible {
+  outline: var(--focus-outline-width) solid currentColor;
+  outline-offset: var(--focus-outline-offset);
+}
+
+/* Windows High Contrast / Forced Colors Mode */
+@media (forced-colors: active) {
+  .parallax-canvas {
+    display: none; /* Hide purely decorative geometric gradients */
+  }
+
+  .btn,
+  .card,
+  .badge,
+  .navbar {
+    border: 1px solid ButtonText !important;
+  }
+
+  .btn-primary {
+    background-color: ButtonText !important;
+    color: ButtonFace !important;
+  }
+
+  a:focus-visible,
+  button:focus-visible,
+  .btn:focus-visible {
+    outline: 2px solid Highlight !important;
+  }
+}

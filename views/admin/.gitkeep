@@ -1,0 +1,6 @@
+# Admin Views Directory
+Stores administrative dashboard templates:
+- login.ejs
+- dashboard.ejs
+- submissions.ejs
+- submission-detail.ejs

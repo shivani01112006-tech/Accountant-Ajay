@@ -1,0 +1,31 @@
+{
+  "name": "ajay-singla-portfolio",
+  "version": "1.0.0",
+  "description": "Portfolio website for Ajay Singla, self-employed accountant with 15+ years experience",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "seed": "node db/seed.js",
+    "test": "node tests/m1-verify.js"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "bcryptjs": "^3.0.2",
+    "better-sqlite3": "^11.8.1",
+    "dotenv": "^16.4.7",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.5.0",
+    "express-session": "^1.18.1",
+    "helmet": "^8.0.0",
+    "validator": "^13.12.0"
+  },
+  "optionalDependencies": {
+    "bcrypt": "^5.1.1",
+    "better-sqlite3": "^11.8.1"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "private": true
+}

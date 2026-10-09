@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>500 Internal Server Error | Ajay Singla</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/components.css">
+</head>
+<body>
+  <%- include('../partials/navbar') %>
+
+  <main style="display: flex; align-items: center; justify-content: center; min-height: 60vh; text-align: center;">
+    <div class="container">
+      <div class="card card-dark" style="max-width: 580px; margin: 0 auto; padding: var(--space-6);">
+        <span class="eyebrow" style="color: var(--color-error);">Error 500</span>
+        <h1 style="font-size: var(--text-xl); margin-top: var(--space-2); margin-bottom: var(--space-3);">Internal Server Error</h1>
+        <p><%= typeof message !== 'undefined' ? message : 'An unexpected server error occurred. Please try again shortly.' %></p>
+        <% if (typeof error !== 'undefined' && error) { %>
+          <pre style="text-align: left; background: var(--bg-0); padding: var(--space-3); border-radius: var(--radius-sm); overflow-x: auto; font-size: var(--text-xs); color: var(--color-error); margin-top: var(--space-3);"><%= error %></pre>
+        <% } %>
+        <div style="margin-top: var(--space-5);">
+          <a href="/" class="btn btn-primary">Return to Home</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <%- include('../partials/footer') %>
+</body>
+</html>

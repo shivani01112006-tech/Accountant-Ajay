@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= typeof title !== 'undefined' ? (title.includes('Ajay Singla') ? title : title + ' | Ajay Singla') : 'Ajay Singla | Accounting & Tax Advisory' %></title>
+  <meta name="description" content="<%= typeof description !== 'undefined' ? description : 'Professional Accounting, GST Registration & Filing, and Income Tax Services in Mansa, Punjab. 15+ years of trusted financial expertise.' %>">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="/img/favicon.ico" type="image/x-icon">
+
+  <!-- Typography: Google Fonts Preconnect & Stylesheets (Playfair Display & Inter) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+
+  <!-- Design System CSS Hierarchy -->
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/parallax.css">
+  <% if (typeof extraCss !== 'undefined' && extraCss) { %>
+    <link rel="stylesheet" href="<%= extraCss %>">
+  <% } %>
+</head>
+<body class="<%= typeof bodyClass !== 'undefined' ? bodyClass : '' %>">
+  <!-- Accessibility Skip Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Shared Navigation -->
+  <%- include('../partials/navbar') %>
+
+  <!-- Semantic Main Content Wrapper -->
+  <main id="main-content">
+    <%- body %>
+  </main>
+
+  <!-- Shared Footer -->
+  <%- include('../partials/footer') %>
+
+  <!-- Client-Side Scripts -->
+  <script src="/js/main.js" defer></script>
+  <script src="/js/parallax.js" defer></script>
+  <% if (typeof extraScript !== 'undefined' && extraScript) { %>
+    <script src="<%= extraScript %>" defer></script>
+  <% } %>
+</body>
+</html>

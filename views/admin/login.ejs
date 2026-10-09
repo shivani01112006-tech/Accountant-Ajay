@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Login | Ajay Singla</title>
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <style>
+    body { background: var(--bg-2); display: flex; align-items: center; justify-content: center; min-height: 100vh; }
+    .login-card { background: var(--surface); padding: 32px; border-radius: var(--radius-lg); box-shadow: 0 10px 30px rgba(0,0,0,0.08); width: 100%; max-width: 400px; }
+  </style>
+</head>
+<body>
+  <div class="login-card">
+    <h2 class="text-center">Admin Login</h2>
+    <% if (error) { %>
+      <div class="form-error mb-3 text-center"><%= error %></div>
+    <% } %>
+    <form action="/admin/login" method="POST" class="mt-4">
+      <div class="form-group mb-3">
+        <label for="username" class="form-label">Email / Username</label>
+        <input type="text" id="username" name="username" class="form-control" required>
+      </div>
+      <div class="form-group mb-4">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" id="password" name="password" class="form-control" required>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block">Log In</button>
+    </form>
+    <div class="text-center mt-4">
+      <a href="/" class="btn-link text-sm color-ink-soft">&larr; Back to Website</a>
+    </div>
+  </div>
+</body>
+</html>

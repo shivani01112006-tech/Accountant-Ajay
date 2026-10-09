@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= typeof title !== 'undefined' ? title : 'Ajay Singla | Accounting & Tax Consultant' %></title>
+  <meta name="description" content="Professional Accounting, GST Registration & Filing, and Income Tax Services in Mansa, Punjab. 15+ years of trusted financial expertise.">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="/img/favicon.ico" type="image/x-icon">
+
+  <!-- Typography: Google Fonts Preconnect & Stylesheets (Playfair Display & Inter) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+
+  <!-- Design System CSS Hierarchy -->
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/parallax.css">
+</head>
+<body>
+  <!-- Accessibility Skip Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Shared Navigation -->
+  <%- include('../partials/navbar') %>
+
+  <!-- Main Content Body -->
+  <main id="main-content">
+    <!-- 1. Hero Section (Dark, Parallax Enabled) -->
+    <section class="section section-dark hero-parallax-container" data-parallax="container" aria-label="Introduction">
+      <!-- Hardware-Accelerated Parallax Layers Canvas -->
+      <div class="parallax-canvas" aria-hidden="true">
+        <!-- Layer 1: Deep Precision Coordinate Grid (Speed: 0.2x) -->
+        <div class="parallax-layer parallax-layer-grid" data-parallax-layer data-speed="0.2"></div>
+        <!-- Layer 2: Mid-ground Architectural Geometry (Speed: 0.4x) -->
+        <div class="parallax-layer parallax-layer-accents" data-parallax-layer data-speed="0.4"></div>
+        <!-- Layer 3: Foreground Radial Spotlight (Speed: 0.6x) -->
+        <div class="parallax-layer parallax-layer-glow" data-parallax-layer data-speed="0.6"></div>
+      </div>
+
+      <div class="container hero-content">
+        <div class="reveal-on-scroll">
+          <span class="eyebrow">Chartered-Style Precision, Local Trust</span>
+          <h1>Accounts, GST &amp; Tax &mdash; handled with 15+ years of care.</h1>
+          <p class="lead">
+            Expert accounting, statutory compliance, and tax advisory for individuals, traders, and small businesses in Mansa, Punjab.
+          </p>
+          <div class="flex flex-wrap gap-3 mt-4">
+            <a href="/contact" class="btn btn-primary">Get in touch</a>
+            <a href="/services" class="btn btn-ghost">View services</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Trust Strip (Light, Key Metrics) -->
+    <section class="section section-light" aria-label="Trust Indicators and Statistics">
+      <div class="container">
+        <div class="grid grid-4 reveal-on-scroll">
+          <div class="stat-tile">
+            <div class="stat-number">15+</div>
+            <div class="stat-label">Years of Experience</div>
+          </div>
+          <div class="stat-tile">
+            <div class="stat-number">1,000+</div>
+            <div class="stat-label">Filings Completed</div>
+          </div>
+          <div class="stat-tile">
+            <div class="stat-number">100%</div>
+            <div class="stat-label">Statutory Compliance</div>
+          </div>
+          <div class="stat-tile">
+            <div class="stat-number">48-Hr</div>
+            <div class="stat-label">Average Turnaround</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Featured Services Preview (Light) -->
+    <section class="section section-light" style="padding-top: 0;" aria-label="Featured Practice Areas">
+      <div class="container">
+        <div class="section-header text-center reveal-on-scroll">
+          <span class="eyebrow">Core Practice Areas</span>
+          <h2>Comprehensive Compliance &amp; Advisory</h2>
+          <p>End-to-end statutory services designed for precision, punctuality, and complete peace of mind.</p>
+        </div>
+
+        <div class="grid grid-3">
+          <% if (typeof services !== 'undefined' && services.length > 0) { %>
+            <% services.forEach((service, index) => { %>
+              <div class="card card-light reveal-on-scroll reveal-delay-<%= (index % 4) + 1 %>">
+                <span class="badge badge-light"><%= service.slug.toUpperCase() %></span>
+                <h3 class="mt-3 mb-2"><%= service.title %></h3>
+                <p><%= service.summary %></p>
+                <a href="/services#<%= service.slug %>" class="btn-link mt-2">Learn More &rarr;</a>
+              </div>
+            <% }); %>
+          <% } else { %>
+            <div class="card card-light reveal-on-scroll reveal-delay-1">
+              <span class="badge badge-light">GST</span>
+              <h3 class="mt-3 mb-2">GST Registration &amp; Filing</h3>
+              <p>Monthly &amp; quarterly GSTR returns, ITC reconciliation, and new registrations for enterprises.</p>
+              <a href="/services#gst" class="btn-link mt-2">Learn More &rarr;</a>
+            </div>
+            <div class="card card-light reveal-on-scroll reveal-delay-2">
+              <span class="badge badge-light">ITR</span>
+              <h3 class="mt-3 mb-2">Income Tax Return (ITR)</h3>
+              <p>Accurate tax computation, deduction optimization, and filing for salaried and business clients.</p>
+              <a href="/services#income-tax" class="btn-link mt-2">Learn More &rarr;</a>
+            </div>
+            <div class="card card-light reveal-on-scroll reveal-delay-3">
+              <span class="badge badge-light">PAN</span>
+              <h3 class="mt-3 mb-2">PAN Card Assistance</h3>
+              <p>Speedy new PAN applications, demographic corrections, and mandatory Aadhaar linkage.</p>
+              <a href="/services#pan" class="btn-link mt-2">Learn More &rarr;</a>
+            </div>
+          <% } %>
+        </div>
+
+        <div class="text-center mt-6 reveal-on-scroll">
+          <a href="/services" class="btn btn-ghost btn-ghost-dark">Explore all services</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Why Choose Us (Dark, 2x2 Authority Grid) -->
+    <section class="section section-dark-elevated" aria-label="Why Choose Ajay Singla">
+      <div class="container">
+        <div class="section-header reveal-on-scroll">
+          <span class="eyebrow">The Singla Advantage</span>
+          <h2>Why Clients Trust Our Practice</h2>
+          <p>Delivering chartered-grade rigor with personal accessibility and neighborhood reliability.</p>
+        </div>
+
+        <div class="grid grid-2">
+          <div class="card card-dark reveal-on-scroll reveal-delay-1">
+            <h4 class="mb-2">1. Precision &amp; Zero-Penalty Focus</h4>
+            <p>Every filing undergoes thorough multi-point checks to ensure zero notices, zero late fees, and full statutory compliance.</p>
+          </div>
+          <div class="card card-dark reveal-on-scroll reveal-delay-2">
+            <h4 class="mb-2">2. Strict Deadline Adherence</h4>
+            <p>Proactive reminders and structured turnaround timelines guarantee your monthly and annual filings happen ahead of cutoff dates.</p>
+          </div>
+          <div class="card card-dark reveal-on-scroll reveal-delay-3">
+            <h4 class="mb-2">3. Complete Fee Transparency</h4>
+            <p>Honest, upfront pricing without hidden charges or surprise retainers. You always know what to expect before we begin.</p>
+          </div>
+          <div class="card card-dark reveal-on-scroll reveal-delay-4">
+            <h4 class="mb-2">4. Dedicated Mansa Practice</h4>
+            <p>Over 15 years rooted on One Way Traffic Road, Mansa. Meet directly with your practitioner whenever you need personal counsel.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. 4-Step Process Section (Dark, Parallax Accent) -->
+    <section class="section section-dark" aria-label="Our 4-Step Working Process">
+      <div class="container">
+        <div class="section-header text-center reveal-on-scroll">
+          <span class="eyebrow">Structured Process</span>
+          <h2>How We Work Together</h2>
+          <p>A streamlined, four-step workflow designed to take the friction out of tax compliance.</p>
+        </div>
+
+        <div class="grid grid-4">
+          <div class="process-card reveal-on-scroll reveal-delay-1">
+            <div class="process-step-number">01</div>
+            <h4>Share Documents</h4>
+            <p class="text-lo">Provide your invoices, bank statements, or PAN details via visit or secure digital upload.</p>
+          </div>
+          <div class="process-card reveal-on-scroll reveal-delay-2">
+            <div class="process-step-number">02</div>
+            <h4>Thorough Review</h4>
+            <p class="text-lo">We reconcile entries, calculate deductions, and verify all figures against government records.</p>
+          </div>
+          <div class="process-card reveal-on-scroll reveal-delay-3">
+            <div class="process-step-number">03</div>
+            <h4>Statutory Filing</h4>
+            <p class="text-lo">We submit returns directly to the GSTN or Income Tax portal accurately and on schedule.</p>
+          </div>
+          <div class="process-card reveal-on-scroll reveal-delay-4">
+            <div class="process-step-number">04</div>
+            <h4>Confirm &amp; Archive</h4>
+            <p class="text-lo">Receive verified filing acknowledgments (ITR-V, GSTR ARN) along with complete archival copies.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Call To Action Band (Light) -->
+    <section class="section section-light" aria-label="Consultation Call to Action">
+      <div class="container">
+        <div class="card card-light text-center reveal-on-scroll" style="padding: var(--space-7) var(--space-5);">
+          <span class="eyebrow">Ready to get organized?</span>
+          <h2 class="mt-2 mb-3">Need Help With Your Filing?</h2>
+          <p style="max-width: 560px; margin: 0 auto var(--space-5);">
+            Whether you need a new GST registration, timely ITR filing, or a quick PAN update, we are ready to assist.
+          </p>
+          <div class="flex justify-center gap-3 flex-wrap">
+            <a href="/contact" class="btn btn-primary">Schedule a Consultation</a>
+            <a href="tel:9988383380" class="btn btn-ghost btn-ghost-dark">Call 9988383380</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Shared Footer -->
+  <%- include('../partials/footer') %>
+
+  <!-- Modular Scripts -->
+  <script src="/js/main.js" defer></script>
+  <script src="/js/parallax.js" defer></script>
+</body>
+</html>

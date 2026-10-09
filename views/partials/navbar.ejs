@@ -1,0 +1,37 @@
+<header class="navbar">
+  <div class="container navbar-inner">
+    <!-- Brand Wordmark -->
+    <a href="/" class="navbar-brand" aria-label="Ajay Singla Home">
+      <span class="navbar-logo">Ajay Singla</span>
+      <span class="navbar-tagline">Accounting &amp; Tax Advisory</span>
+    </a>
+
+    <!-- Mobile Hamburger Toggle -->
+    <button class="navbar-toggle" id="navbar-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navbar-menu">
+      <span class="navbar-toggle-bar"></span>
+      <span class="navbar-toggle-bar"></span>
+      <span class="navbar-toggle-bar"></span>
+    </button>
+
+    <!-- Navigation Menu (Desktop & Mobile Drawer) -->
+    <nav class="navbar-menu" id="navbar-menu" aria-label="Main Navigation">
+      <ul class="navbar-nav">
+        <li>
+          <a href="/" class="nav-link <%= typeof currentPath !== 'undefined' && currentPath === '/' ? 'active' : '' %>" <%= typeof currentPath !== 'undefined' && currentPath === '/' ? 'aria-current="page"' : '' %>>Home</a>
+        </li>
+        <li>
+          <a href="/about" class="nav-link <%= typeof currentPath !== 'undefined' && currentPath === '/about' ? 'active' : '' %>" <%= typeof currentPath !== 'undefined' && currentPath === '/about' ? 'aria-current="page"' : '' %>>About</a>
+        </li>
+        <li>
+          <a href="/services" class="nav-link <%= typeof currentPath !== 'undefined' && currentPath === '/services' ? 'active' : '' %>" <%= typeof currentPath !== 'undefined' && currentPath === '/services' ? 'aria-current="page"' : '' %>>Services</a>
+        </li>
+        <li>
+          <a href="/contact" class="nav-link <%= typeof currentPath !== 'undefined' && currentPath === '/contact' ? 'active' : '' %>" <%= typeof currentPath !== 'undefined' && currentPath === '/contact' ? 'aria-current="page"' : '' %>>Contact</a>
+        </li>
+        <li class="navbar-cta-item">
+          <a href="/contact" class="btn btn-primary navbar-cta-btn">Get in touch</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>

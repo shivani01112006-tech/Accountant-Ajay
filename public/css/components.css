@@ -1,0 +1,922 @@
+/**
+ * Ajay Singla Portfolio - Components Stylesheet
+ * Buttons, Cards, Badges, Form Inputs, Navbar, Footer, Trust Indicators, Process Steps
+ * Milestone 2: Design System & Styling
+ */
+
+/* ==========================================================================
+   1. Buttons (.btn)
+   ========================================================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: 14px 28px; /* Strict 14x28 padding per design.md § 4 */
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--fw-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  border-radius: var(--radius-sm); /* Strict 4px radius per design.md */
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
+  transition: transform var(--transition-fast),
+              background-color var(--transition-fast),
+              border-color var(--transition-fast),
+              box-shadow var(--transition-fast);
+}
+
+.btn:hover {
+  transform: translateY(-2px); /* Buttons lift 2px on hover per design.md § 3 */
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn:disabled,
+.btn[aria-disabled="true"] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* Primary Button (Dark Sections Canvas) */
+.btn-primary {
+  background-color: var(--accent); /* Pure White #FFFFFF */
+  color: var(--bg-0);              /* Deep Carbon #0B0B0C */
+  border-color: var(--accent);
+}
+
+.btn-primary:hover {
+  background-color: var(--text-hi);
+  border-color: var(--text-hi);
+  box-shadow: 0 4px 16px rgba(255, 255, 255, 0.2);
+}
+
+/* Primary Button (Light Sections Canvas) */
+.btn-primary-dark,
+.section-light .btn-primary {
+  background-color: var(--accent-light); /* Charcoal #111113 */
+  color: #FFFFFF;
+  border-color: var(--accent-light);
+}
+
+.btn-primary-dark:hover,
+.section-light .btn-primary:hover {
+  background-color: var(--line);
+  border-color: var(--line);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Ghost / Outline Button */
+.btn-ghost {
+  background-color: transparent;
+  color: var(--text-hi);
+  border-color: var(--line);
+}
+
+.btn-ghost:hover {
+  border-color: var(--text-hi);
+  background-color: rgba(255, 255, 255, 0.06);
+}
+
+.section-light .btn-ghost,
+.btn-ghost-dark {
+  color: var(--ink);
+  border-color: var(--line-light);
+}
+
+.section-light .btn-ghost:hover,
+.btn-ghost-dark:hover {
+  border-color: var(--ink);
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+/* Compact Button */
+.btn-sm {
+  padding: 8px 16px;
+  font-size: var(--text-xs);
+  letter-spacing: 0.06em;
+}
+
+/* Full Width Button */
+.btn-block {
+  width: 100%;
+}
+
+/* Text Link CTA */
+.btn-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--fw-semibold);
+  color: inherit;
+  text-decoration: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: color var(--transition-fast), transform var(--transition-fast);
+}
+
+.btn-link:hover {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.section-light .btn-link:hover {
+  color: var(--ink);
+}
+
+/* ==========================================================================
+   2. Cards (.card)
+   ========================================================================== */
+.card {
+  padding: var(--space-4);
+  border-radius: var(--radius-md); /* 12px per design.md § 2 */
+  position: relative;
+  transition: transform var(--transition-base),
+              border-color var(--transition-base),
+              box-shadow var(--transition-base),
+              background-color var(--transition-base);
+}
+
+@media (min-width: 768px) {
+  .card {
+    padding: var(--space-5); /* 32px padding desktop per design.md § 4 */
+  }
+}
+
+.card:hover {
+  transform: translateY(-4px); /* Cards lift 4px on hover */
+}
+
+/* Dark Card (for dark sections) */
+.card-dark {
+  background-color: var(--bg-1); /* #151517 */
+  border: 1px solid var(--line); /* Hairline #2A2A2D */
+  color: var(--text-hi);
+  box-shadow: var(--shadow-dark);
+}
+
+.card-dark:hover {
+  background-color: var(--bg-0); /* Darken one step */
+  border-color: var(--text-lo);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.45);
+}
+
+/* Light Card (for light sections) */
+.card-light {
+  background-color: var(--surface); /* #FFFFFF */
+  border: 1px solid var(--line-light); /* Hairline #DCDCD8 */
+  color: var(--ink);
+  box-shadow: var(--shadow-light);
+}
+
+.card-light:hover {
+  background-color: var(--bg-2); /* Darken/Lighten one step */
+  border-color: var(--ink-soft);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* ==========================================================================
+   3. Status Badges & Chips (.badge)
+   ========================================================================== */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: 4px 12px;
+  border-radius: var(--radius-pill); /* 999px per design.md § 2 */
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background-color: rgba(255, 255, 255, 0.08);
+  color: var(--text-hi);
+  border: 1px solid var(--line);
+  line-height: 1.2;
+}
+
+.badge-light {
+  background-color: var(--bg-2);
+  color: var(--ink);
+  border-color: var(--line-light);
+}
+
+.badge-new {
+  background-color: var(--ink);
+  color: var(--surface);
+  border-color: var(--ink);
+}
+
+/* Semantic Badge Exceptions */
+.badge-success {
+  background-color: rgba(46, 125, 50, 0.12);
+  color: var(--color-success);
+  border-color: rgba(46, 125, 50, 0.35);
+}
+
+.badge-error {
+  background-color: rgba(192, 57, 43, 0.12);
+  color: var(--color-error);
+  border-color: rgba(192, 57, 43, 0.35);
+}
+
+.badge-muted {
+  background-color: var(--bg-2);
+  color: var(--ink-soft);
+  border-color: var(--line-light);
+}
+
+/* ==========================================================================
+   4. Form Controls & Inputs
+   ========================================================================== */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+  text-align: left;
+}
+
+.form-label {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--fw-medium);
+  color: var(--ink-soft);
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.section-dark .form-label {
+  color: var(--text-lo);
+}
+
+.form-label .required {
+  color: var(--color-error);
+  font-weight: var(--fw-bold);
+}
+
+/* Base Input / Select / Textarea (Touch Target 48px per design.md § 4) */
+.form-control,
+.input,
+.select,
+.textarea {
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 16px;
+  font-family: var(--font-body);
+  font-size: var(--text-base); /* 16px prevents iOS automatic zoom */
+  line-height: 1.4;
+  color: var(--ink);
+  background-color: var(--surface);
+  border: 1px solid var(--line-light);
+  border-radius: var(--radius-sm); /* 4px per design.md § 2 */
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.form-control:focus,
+.input:focus,
+.select:focus,
+.textarea:focus {
+  outline: none;
+  border-color: var(--ink);
+  box-shadow: 0 0 0 2px rgba(17, 17, 19, 0.15);
+}
+
+/* Dark Theme Form Inputs */
+.form-control-dark,
+.section-dark .form-control,
+.section-dark .input,
+.section-dark .select,
+.section-dark .textarea {
+  color: var(--text-hi);
+  background-color: var(--bg-1);
+  border-color: var(--line);
+}
+
+.form-control-dark:focus,
+.section-dark .form-control:focus,
+.section-dark .input:focus,
+.section-dark .select:focus,
+.section-dark .textarea:focus {
+  border-color: var(--text-hi);
+  box-shadow: 0 0 0 2px rgba(245, 245, 245, 0.2);
+}
+
+.textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235A5A60' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 16px;
+  padding-right: 40px;
+  cursor: pointer;
+}
+
+.section-dark .select {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23A1A1A6' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+}
+
+/* Validation Error State */
+.form-control.is-invalid,
+.input.is-invalid,
+.select.is-invalid,
+.textarea.is-invalid {
+  border-color: var(--color-error) !important;
+  box-shadow: 0 0 0 2px rgba(192, 57, 43, 0.2) !important;
+}
+
+.form-error,
+.invalid-feedback {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: var(--fw-medium);
+  color: var(--color-error);
+  margin-top: var(--space-1);
+}
+
+/* Success Card Replacement State */
+.form-success-card {
+  padding: var(--space-5);
+  background-color: var(--surface);
+  border: 1px solid var(--color-success);
+  border-radius: var(--radius-md);
+  text-align: center;
+}
+
+.form-success-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-full);
+  background-color: rgba(46, 125, 50, 0.12);
+  color: var(--color-success);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--space-4);
+}
+
+/* Checkbox Control */
+.form-checkbox-label {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--ink-soft);
+  cursor: pointer;
+  user-select: none;
+}
+
+.form-checkbox-label input[type="checkbox"] {
+  margin-top: 3px;
+  width: 18px;
+  height: 18px;
+  accent-color: var(--ink);
+  cursor: pointer;
+}
+
+/* Honeypot Spam Defense Field */
+.honeypot-field,
+.hidden-honey {
+  display: none !important;
+  position: absolute !important;
+  left: -9999px !important;
+  width: 1px !important;
+  height: 1px !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
+}
+
+/* ==========================================================================
+   5. Navbar (.navbar)
+   ========================================================================== */
+.navbar {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: rgba(11, 11, 12, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid transparent;
+  transition: background-color var(--transition-base),
+              backdrop-filter var(--transition-base),
+              border-color var(--transition-base),
+              box-shadow var(--transition-base);
+}
+
+/* Scrolled State Triggered via JS (> 40px scroll) */
+.navbar.navbar-scrolled {
+  background-color: rgba(11, 11, 12, 0.90);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom-color: var(--line);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+}
+
+.navbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+}
+
+.navbar-brand {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+}
+
+.navbar-logo {
+  font-family: var(--font-heading);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-hi);
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+.navbar-tagline {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  color: var(--text-lo);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Desktop Navigation Menu */
+.navbar-menu {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+  list-style: none;
+}
+
+.nav-link {
+  position: relative;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--text-lo);
+  padding: var(--space-2) 0;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.nav-link:hover {
+  color: var(--text-hi);
+}
+
+/* Active Page Indicator */
+.nav-link.active {
+  color: var(--text-hi);
+  font-weight: 600;
+}
+
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--accent);
+  border-radius: 1px;
+}
+
+/* Hamburger Button (Default hidden on desktop) */
+.navbar-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: var(--space-2);
+  width: 44px;
+  height: 44px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  z-index: 1001;
+}
+
+.navbar-toggle-bar {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background-color: var(--text-hi);
+  transition: transform var(--transition-fast), opacity var(--transition-fast);
+}
+
+/* Animated Hamburger to X */
+.navbar-toggle.is-open .navbar-toggle-bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.navbar-toggle.is-open .navbar-toggle-bar:nth-child(2) {
+  opacity: 0;
+}
+.navbar-toggle.is-open .navbar-toggle-bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Mobile & Tablet Viewport (< 1024px) */
+@media (max-width: 1023px) {
+  .navbar-toggle {
+    display: flex;
+  }
+
+  .navbar-menu {
+    position: fixed;
+    top: 72px;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 72px);
+    background-color: var(--bg-0);
+    border-top: 1px solid var(--line);
+    padding: var(--space-6) var(--space-5);
+    flex-direction: column;
+    align-items: flex-start;
+    overflow-y: auto;
+    display: none; /* Controlled via .is-open */
+  }
+
+  .navbar-menu.is-open {
+    display: flex;
+  }
+
+  .navbar-nav {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    gap: var(--space-4);
+  }
+
+  .nav-link {
+    font-size: var(--text-md);
+    width: 100%;
+    padding: var(--space-3) 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .nav-link.active::after {
+    display: none;
+  }
+  .nav-link.active {
+    border-left: 3px solid var(--accent);
+    padding-left: var(--space-3);
+  }
+
+  .navbar-cta-item {
+    margin-top: var(--space-4);
+    width: 100%;
+  }
+
+  .navbar-cta-btn {
+    width: 100%;
+  }
+}
+
+/* ==========================================================================
+   6. Footer (.footer)
+   ========================================================================== */
+.footer {
+  background-color: var(--bg-0);
+  border-top: 1px solid var(--line);
+  padding-top: var(--space-7);
+  padding-bottom: var(--space-6);
+  color: var(--text-lo);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1.5fr 1fr;
+  gap: var(--space-6);
+  margin-bottom: var(--space-7);
+}
+
+@media (max-width: 1023px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+  }
+}
+
+.footer-col-brand {
+  max-width: 440px;
+}
+
+.footer-title {
+  font-family: var(--font-heading);
+  font-size: var(--text-md);
+  font-weight: 600;
+  color: var(--text-hi);
+  margin-bottom: var(--space-4);
+}
+
+.footer-bio {
+  font-size: var(--text-sm);
+  line-height: 1.6;
+  margin-bottom: var(--space-3);
+}
+
+.footer-disclaimer {
+  font-size: var(--text-xs);
+  line-height: 1.5;
+  color: var(--text-lo);
+  border-left: 2px solid var(--line);
+  padding-left: var(--space-3);
+  margin-top: var(--space-4);
+}
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  font-size: var(--text-sm);
+}
+
+.footer-links a {
+  color: var(--text-lo);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.footer-links a:hover {
+  color: var(--text-hi);
+}
+
+.footer-contact-info li {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.footer-label {
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-lo);
+}
+
+.footer-contact-link {
+  color: var(--text-hi) !important;
+}
+
+.footer-admin-link {
+  font-size: var(--text-xs);
+  opacity: 0.7;
+}
+
+.footer-bottom {
+  border-top: 1px solid var(--line);
+  padding-top: var(--space-4);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: var(--text-xs);
+  color: var(--text-lo);
+}
+
+@media (max-width: 640px) {
+  .footer-bottom {
+    flex-direction: column;
+    gap: var(--space-2);
+    text-align: center;
+  }
+}
+
+/* ==========================================================================
+   7. Trust Indicators & Stat Tiles (.stat-tile)
+   ========================================================================== */
+.stat-tile {
+  text-align: center;
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  background-color: var(--surface);
+  border: 1px solid var(--line-light);
+  box-shadow: var(--shadow-subtle);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.stat-tile:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-light);
+}
+
+.stat-number {
+  font-family: var(--font-heading);
+  font-size: var(--text-xl);
+  font-weight: var(--fw-bold);
+  color: var(--ink);
+  line-height: 1.1;
+  margin-bottom: var(--space-1);
+}
+
+.stat-label {
+  font-size: var(--text-xs);
+  font-weight: var(--fw-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-soft);
+}
+
+/* ==========================================================================
+   8. Process Step Cards (.process-card)
+   ========================================================================== */
+.process-card {
+  padding: var(--space-5);
+  background-color: var(--bg-1);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  position: relative;
+  transition: transform var(--transition-base), border-color var(--transition-base);
+}
+
+.process-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--text-lo);
+}
+
+.process-step-number {
+  font-family: var(--font-heading);
+  font-size: var(--text-lg);
+  font-weight: var(--fw-bold);
+  color: var(--text-lo);
+  margin-bottom: var(--space-2);
+}
+
+/* ==========================================================================
+   9. FAQ Accordion (.accordion)
+   ========================================================================== */
+.accordion {
+  border: 1px solid var(--line-light);
+  border-radius: var(--radius-md);
+  background-color: var(--surface);
+  overflow: hidden;
+}
+
+.accordion-item {
+  border-bottom: 1px solid var(--line-light);
+}
+
+.accordion-item:last-child {
+  border-bottom: none;
+}
+
+.accordion-header {
+  margin: 0;
+}
+
+.accordion-button {
+  width: 100%;
+  padding: var(--space-4) var(--space-5);
+  background: transparent;
+  border: none;
+  font-family: var(--font-body);
+  font-size: 1.125rem;
+  font-weight: var(--fw-semibold);
+  color: var(--ink);
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+}
+
+.accordion-button:hover {
+  background-color: var(--bg-2);
+}
+
+.accordion-icon {
+  font-size: 1.25rem;
+  line-height: 1;
+  transition: transform var(--transition-fast);
+}
+
+.accordion-content {
+  padding: 0 var(--space-5) var(--space-4);
+  font-size: var(--text-base);
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   10. Chatbot Launcher & Panel (.chat-launcher, .chat-panel)
+   ========================================================================== */
+.chat-launcher {
+  position: fixed;
+  bottom: var(--space-4);
+  right: var(--space-4);
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-full);
+  background-color: var(--accent);
+  color: var(--bg-0);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-dark);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.chat-launcher:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.chat-panel {
+  position: fixed;
+  bottom: 88px;
+  right: var(--space-4);
+  width: 360px;
+  height: 520px;
+  max-width: calc(100vw - 32px);
+  background-color: var(--bg-1);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-dark);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ==========================================================================
+   11. Cookie Consent Notice (.cookie-notice)
+   ========================================================================== */
+.cookie-notice {
+  position: fixed;
+  bottom: var(--space-4);
+  left: var(--space-4);
+  max-width: 380px;
+  background-color: rgba(21, 21, 23, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  box-shadow: var(--shadow-dark);
+  z-index: 998;
+}
+
+.cookie-notice-text {
+  font-size: var(--text-xs);
+  color: var(--text-lo);
+  line-height: 1.5;
+  margin-bottom: var(--space-3);
+}
+
+.cookie-notice-actions {
+  display: flex;
+  gap: var(--space-2);
+}
+
+/* ==========================================================================
+   12. Prefers-Reduced-Motion Component Overrides
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .btn:hover,
+  .btn:active,
+  .card:hover,
+  .stat-tile:hover,
+  .process-card:hover,
+  .chat-launcher:hover {
+    transform: none !important;
+  }
+}

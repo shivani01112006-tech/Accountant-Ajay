@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= typeof title !== 'undefined' ? title : 'About Ajay Singla' %></title>
+  <meta name="description" content="About Ajay Singla, Accounting & Tax Consultant.">
+  
+  <link rel="icon" href="/img/favicon.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/components.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <%- include('../partials/navbar') %>
+
+  <main id="main-content">
+    <!-- Page Hero (Short, Dark) -->
+    <section class="section section-dark hero-short">
+      <div class="container container-sm text-center">
+        <span class="eyebrow fade-up">About the Practice</span>
+        <h1 class="fade-up">About Ajay Singla</h1>
+        <p class="fade-up">15+ years of chartered-style precision and local trust in Mansa, Punjab.</p>
+      </div>
+    </section>
+
+    <!-- Bio Section -->
+    <section class="section section-light">
+      <div class="container">
+        <div class="grid grid-2 align-center">
+          <div class="bio-image fade-up">
+            <!-- Placeholder portrait -->
+            <div style="background: var(--line); width: 100%; aspect-ratio: 3/4; border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; color: var(--ink-soft);">
+              [Portrait Placeholder]
+            </div>
+          </div>
+          <div class="bio-content fade-up">
+            <h2>Experience you can count on.</h2>
+            <p><strong>Ajay Singla</strong> is a self-employed accountant with over 15 years of experience serving individuals and small businesses. Based at One Way Traffic Road in Mansa, Punjab, he has built a reputation for accuracy, timely filing, and deep knowledge of Indian tax law.</p>
+            <p>From complex Income Tax Returns to monthly GST compliance and PAN card services, Ajay provides clear, jargon-free advice. His goal is to remove the stress of taxation so you can focus on growing your business or managing your personal finances with peace of mind.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Timeline / Milestones -->
+    <section class="section section-surface">
+      <div class="container container-sm text-center">
+        <h2 class="fade-up">Milestones</h2>
+        <div class="timeline mt-4 fade-up text-left">
+          <div style="border-left: 2px solid var(--line); padding-left: 24px; margin-bottom: 32px;">
+            <div class="eyebrow">2009</div>
+            <h4>Practice Established</h4>
+            <p class="text-sm color-ink-soft">Started providing local accounting services in Mansa.</p>
+          </div>
+          <div style="border-left: 2px solid var(--line); padding-left: 24px; margin-bottom: 32px;">
+            <div class="eyebrow">2017</div>
+            <h4>GST Transition</h4>
+            <p class="text-sm color-ink-soft">Successfully migrated clients to the new GST regime with 100% compliance.</p>
+          </div>
+          <div style="border-left: 2px solid var(--line); padding-left: 24px;">
+            <div class="eyebrow">Today</div>
+            <h4>15+ Years of Trust</h4>
+            <p class="text-sm color-ink-soft">Continuing to serve hundreds of satisfied clients across Punjab.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Values -->
+    <section class="section section-light">
+      <div class="container">
+        <div class="text-center fade-up mb-4">
+          <h2>Our Core Values</h2>
+        </div>
+        <div class="grid grid-3">
+          <div class="card fade-up">
+            <h4>Accuracy First</h4>
+            <p class="text-sm color-ink-soft">Every return and calculation is double-checked. We pride ourselves on zero-error filings.</p>
+          </div>
+          <div class="card fade-up" style="transition-delay: 100ms;">
+            <h4>Deadlines Met</h4>
+            <p class="text-sm color-ink-soft">Late fees are avoidable. We ensure your compliance is always ahead of schedule.</p>
+          </div>
+          <div class="card fade-up" style="transition-delay: 200ms;">
+            <h4>Transparent Advice</h4>
+            <p class="text-sm color-ink-soft">No hidden fees, no confusing jargon. Just clear steps on what you need to do.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Band -->
+    <section class="section section-dark text-center">
+      <div class="container container-sm fade-up">
+        <h2>Ready to simplify your taxes?</h2>
+        <div class="mt-4">
+          <a href="/contact" class="btn btn-primary">Get in touch</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <%- include('../partials/footer') %>
+
+  <script src="/js/main.js" defer></script>
+  <script src="/js/parallax.js" defer></script>
+</body>
+</html>

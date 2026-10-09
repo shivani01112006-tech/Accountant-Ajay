@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= typeof title !== 'undefined' ? title : 'Contact | Ajay Singla' %></title>
+  <meta name="description" content="Get in touch with Ajay Singla for accounting and tax services.">
+  
+  <link rel="icon" href="/img/favicon.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/components.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <%- include('../partials/navbar') %>
+
+  <main id="main-content">
+    <section class="section section-dark hero-short">
+      <div class="container container-sm text-center">
+        <span class="eyebrow fade-up">Get in Touch</span>
+        <h1 class="fade-up">Contact Us</h1>
+        <p class="fade-up">Have a question or need assistance? Leave a message below.</p>
+      </div>
+    </section>
+
+    <section class="section section-surface">
+      <div class="container">
+        <div class="grid grid-2">
+          <!-- Contact Details -->
+          <div class="contact-details fade-up">
+            <h2>Let's discuss your requirements</h2>
+            <p class="mt-2 color-ink-soft">Our office is open for consultation. Reach out directly or fill the form, and we will get back to you promptly.</p>
+            
+            <div class="mt-4">
+              <h4 class="eyebrow">Office Address</h4>
+              <p>One Way Traffic Road<br>Mansa, Punjab</p>
+            </div>
+            
+            <div class="mt-4">
+              <h4 class="eyebrow">Contact Information</h4>
+              <p>Phone: <a href="tel:9988383380" class="btn-link">9988383380</a></p>
+              <p>Email: <a href="mailto:ajay30@gmail.com" class="btn-link">ajay30@gmail.com</a></p>
+            </div>
+
+            <div class="mt-4">
+              <h4 class="eyebrow">Business Hours</h4>
+              <p class="color-ink-soft">[Placeholder: 10:00 AM - 6:00 PM, Mon - Sat]</p>
+            </div>
+            
+            <div class="mt-4">
+              <!-- Placeholder for Map -->
+              <div style="background: var(--line); width: 100%; aspect-ratio: 16/9; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; color: var(--ink-soft); font-size: 0.9rem;">
+                [Map Embed Placeholder]
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact Form -->
+          <div class="contact-form-wrapper fade-up">
+            <div class="card card-light shadow-light">
+              <% if (typeof success !== 'undefined' && success) { %>
+                <div class="form-success-card">
+                  <div class="form-success-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  </div>
+                  <h3 class="text-success">Message Sent!</h3>
+                  <p class="mt-2">Thank you for reaching out. We have received your enquiry and will contact you shortly.</p>
+                  <a href="/" class="btn btn-primary mt-4">Return Home</a>
+                </div>
+              <% } else { %>
+                <h3>Send an Enquiry</h3>
+                <% if (typeof error !== 'undefined' && error) { %>
+                  <div class="form-error mb-3">
+                    <%= error %>
+                  </div>
+                <% } %>
+                <form action="/contact" method="POST" class="mt-4">
+                  <!-- Honeypot -->
+                  <div class="hidden-honey" aria-hidden="true">
+                    <input type="text" name="website" tabindex="-1" autocomplete="off">
+                  </div>
+                  
+                  <!-- CSRF Token (Phase 6 / later, placeholder for now) -->
+                  <% if (typeof csrfToken !== 'undefined') { %>
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                  <% } %>
+
+                  <div class="form-group">
+                    <label for="name" class="form-label">Full Name <span class="required">*</span></label>
+                    <input type="text" id="name" name="name" class="form-control" required value="<%= typeof body !== 'undefined' ? body.name : '' %>">
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="email" class="form-label">Email Address <span class="required">*</span></label>
+                    <input type="email" id="email" name="email" class="form-control" required value="<%= typeof body !== 'undefined' ? body.email : '' %>">
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="phone" class="form-label">Phone Number <span class="required">*</span></label>
+                    <input type="tel" id="phone" name="phone" class="form-control" required pattern="[0-9]{10}" title="10 digit mobile number" value="<%= typeof body !== 'undefined' ? body.phone : '' %>">
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="service_id" class="form-label">Service Interested In</label>
+                    <select id="service_id" name="service_id" class="select">
+                      <option value="">-- General Enquiry --</option>
+                      <% if (typeof services !== 'undefined') { %>
+                        <% services.forEach(s => { %>
+                          <option value="<%= s.id %>" <%= (typeof body !== 'undefined' && body.service_id == s.id) || (typeof query !== 'undefined' && query.service == s.id) ? 'selected' : '' %>><%= s.title %></option>
+                        <% }) %>
+                      <% } %>
+                    </select>
+                  </div>
+                  
+                  <div class="form-group mb-4">
+                    <label for="message" class="form-label">Message <span class="required">*</span></label>
+                    <textarea id="message" name="message" class="textarea" required><%= typeof body !== 'undefined' ? body.message : '' %></textarea>
+                  </div>
+                  
+                  <div class="form-group mb-4">
+                    <label class="form-checkbox-label">
+                      <input type="checkbox" id="consent" name="consent" required>
+                      <span>I consent to having my details stored so Ajay Singla can respond to my enquiry.</span>
+                    </label>
+                  </div>
+                  
+                  <button type="submit" class="btn btn-primary btn-block">Submit Message</button>
+                </form>
+              <% } %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <%- include('../partials/footer') %>
+
+  <script src="/js/main.js" defer></script>
+  <script src="/js/parallax.js" defer></script>
+</body>
+</html>

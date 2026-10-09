@@ -1,0 +1,6 @@
+# Middleware Directory
+Stores Express middlewares:
+- auth.js
+- csrf.js
+- rateLimit.js
+- errorHandler.js

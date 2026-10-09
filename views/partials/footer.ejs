@@ -1,0 +1,172 @@
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <!-- Col 1: Profile & Authority Disclaimer -->
+      <div class="footer-col footer-col-brand">
+        <h4 class="footer-title">Ajay Singla &amp; Associates</h4>
+        <p class="footer-bio">
+          Independent accounting, GST compliance, and income tax advisory with over 15 years of dedicated practice in Mansa, Punjab.
+        </p>
+        <p class="footer-disclaimer">
+          <strong>Disclaimer:</strong> Services provided by Ajay Singla, Accounting &amp; Tax Practitioner, are professional accounting and tax compliance assistance. No guaranteed refunds or statutory exemptions are promised. All filings are made per prevailing Indian Income Tax and GST laws.
+        </p>
+      </div>
+
+      <!-- Col 2: Practice Areas -->
+      <div class="footer-col">
+        <h4 class="footer-title">Services</h4>
+        <ul class="footer-links">
+          <li><a href="/services#gst">GST Registration &amp; Returns</a></li>
+          <li><a href="/services#income-tax">Income Tax Returns (ITR)</a></li>
+          <li><a href="/services#pan">PAN Card Applications</a></li>
+          <li><a href="/services">Accounting &amp; Bookkeeping</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Direct Contact Coordinates -->
+      <div class="footer-col">
+        <h4 class="footer-title">Contact</h4>
+        <ul class="footer-links footer-contact-info">
+          <li>
+            <span class="footer-label">Office Address:</span>
+            <span>One Way Traffic Road, Mansa, Punjab 151505</span>
+          </li>
+          <li>
+            <span class="footer-label">Telephone:</span>
+            <a href="tel:9988383380" class="footer-contact-link">9988383380</a>
+          </li>
+          <li>
+            <span class="footer-label">Email:</span>
+            <a href="mailto:ajay30@gmail.com" class="footer-contact-link">ajay30@gmail.com</a>
+          </li>
+          <li>
+            <span class="footer-label">Business Hours:</span>
+            <span>Mon &ndash; Sat: 9:30 AM &ndash; 7:30 PM</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Col 4: Quick Navigation & Admin Access -->
+      <div class="footer-col">
+        <h4 class="footer-title">Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/about">About Ajay Singla</a></li>
+          <li><a href="/services">Tax &amp; GST Services</a></li>
+          <li><a href="/contact">Book Consultation</a></li>
+          <li><a href="/admin/login" class="footer-admin-link">Admin Portal</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="footer-bottom">
+      <p class="footer-copyright">&copy; <%= typeof currentYear !== 'undefined' ? currentYear : new Date().getFullYear() %> Ajay Singla. All rights reserved.</p>
+      <p class="footer-meta">Chartered-Style Precision &bull; Monochromatic Design System</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Chatbot Widget -->
+<% if (typeof features !== 'undefined' && features.chatbot) { %>
+<div id="chatbot-widget" class="chatbot-widget">
+  <button id="chatbot-toggle" class="chatbot-toggle" aria-label="Open chat">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+  </button>
+  <div id="chatbot-panel" class="chatbot-panel" style="display: none;">
+    <div class="chatbot-header">
+      <h4>Ask Us</h4>
+      <button id="chatbot-close" class="chatbot-close" aria-label="Close chat">&times;</button>
+    </div>
+    <div id="chatbot-messages" class="chatbot-messages">
+      <div class="chat-message bot">Hello! How can I help you with your taxes or compliance today?</div>
+    </div>
+    <form id="chatbot-form" class="chatbot-form">
+      <input type="text" id="chatbot-input" placeholder="Type a message..." required autocomplete="off">
+      <button type="submit" class="chatbot-send" aria-label="Send message">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+      </button>
+    </form>
+  </div>
+</div>
+
+<style>
+.chatbot-widget { position: fixed; bottom: 24px; right: 24px; z-index: 9999; }
+.chatbot-toggle { width: 56px; height: 56px; border-radius: 50%; background: var(--bg-0); color: var(--text-hi); border: none; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.15); display: flex; align-items: center; justify-content: center; transition: transform 0.2s; }
+.chatbot-toggle:hover { transform: scale(1.05); }
+.chatbot-panel { width: 360px; height: 520px; max-height: calc(100vh - 48px); background: var(--bg-1); color: var(--text-hi); border-radius: 16px; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.2); position: absolute; bottom: 72px; right: 0; }
+@media(max-width: 480px) { .chatbot-panel { width: calc(100vw - 48px); right: 0; } }
+.chatbot-header { padding: 16px; background: var(--bg-0); display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--line); }
+.chatbot-header h4 { margin: 0; font-size: 1rem; }
+.chatbot-close { background: transparent; border: none; color: var(--text-hi); font-size: 1.5rem; cursor: pointer; line-height: 1; padding: 0; }
+.chatbot-messages { flex: 1; padding: 16px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
+.chat-message { max-width: 80%; padding: 10px 14px; border-radius: 12px; font-size: 0.9rem; line-height: 1.4; }
+.chat-message.bot { background: #2A2A2D; align-self: flex-start; border-bottom-left-radius: 4px; }
+.chat-message.user { background: var(--surface); color: var(--ink); align-self: flex-end; border-bottom-right-radius: 4px; }
+.chatbot-form { display: flex; padding: 12px; background: var(--bg-0); border-top: 1px solid var(--line); }
+#chatbot-input { flex: 1; background: transparent; border: none; color: var(--text-hi); outline: none; padding: 8px; font-size: 0.95rem; font-family: inherit; }
+.chatbot-send { background: transparent; border: none; color: var(--text-hi); cursor: pointer; padding: 8px; display: flex; align-items: center; justify-content: center; }
+.chatbot-send:hover { color: #A1A1A6; }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const toggle = document.getElementById('chatbot-toggle');
+  const panel = document.getElementById('chatbot-panel');
+  const close = document.getElementById('chatbot-close');
+  const form = document.getElementById('chatbot-form');
+  const input = document.getElementById('chatbot-input');
+  const messages = document.getElementById('chatbot-messages');
+
+  if(!toggle) return;
+
+  const togglePanel = () => {
+    const isHidden = panel.style.display === 'none';
+    panel.style.display = isHidden ? 'flex' : 'none';
+    if(isHidden) input.focus();
+    if(typeof gtag === 'function' && isHidden) gtag('event', 'chat_open');
+  };
+
+  toggle.addEventListener('click', togglePanel);
+  close.addEventListener('click', togglePanel);
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const text = input.value.trim();
+    if(!text) return;
+    
+    // Add user message
+    appendMessage(text, 'user');
+    input.value = '';
+    
+    if(typeof gtag === 'function') gtag('event', 'chat_message', { role: 'user' });
+
+    try {
+      const res = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: text })
+      });
+      const data = await res.json();
+      if(data.reply) {
+        appendMessage(data.reply, 'bot');
+      }
+    } catch(err) {
+      appendMessage('Sorry, I am having trouble connecting right now.', 'bot');
+    }
+  });
+
+  function appendMessage(text, role) {
+    const div = document.createElement('div');
+    div.className = `chat-message ${role}`;
+    div.innerHTML = text; // allow links
+    messages.appendChild(div);
+    messages.scrollTop = messages.scrollHeight;
+  }
+});
+</script>
+<% } %>
+
+<% if (typeof features !== 'undefined' && features.analytics) { %>
+  <%- include('analytics') %>
+<% } %>

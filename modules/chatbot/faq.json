@@ -1,0 +1,26 @@
+[
+  {
+    "keywords": ["documents", "itr", "income tax"],
+    "answer": "For ITR filing, you typically need Form 16 (for salaried), PAN, Aadhaar, bank statements, and investment proofs (80C, 80D, etc.)."
+  },
+  {
+    "keywords": ["gst", "registration", "time", "days"],
+    "answer": "Once all documents are submitted and verified, it usually takes 3-7 working days to receive your GSTIN."
+  },
+  {
+    "keywords": ["pan", "correction", "change name", "change dob"],
+    "answer": "Yes, we handle new PAN applications, corrections (name, dob mismatch), and Aadhaar-PAN linking."
+  },
+  {
+    "keywords": ["fees", "cost", "price", "charges"],
+    "answer": "Our fees depend on the complexity of your requirements. Please leave a message or contact us directly at 9988383380 for a precise quote."
+  },
+  {
+    "keywords": ["address", "location", "office", "where"],
+    "answer": "Our office is located at One Way Traffic Road, Mansa, Punjab 151505."
+  },
+  {
+    "keywords": ["timing", "hours", "open"],
+    "answer": "We are open Monday to Saturday, from 9:30 AM to 7:30 PM."
+  }
+]

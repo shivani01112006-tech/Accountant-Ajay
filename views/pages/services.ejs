@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= typeof title !== 'undefined' ? title : 'Services | Ajay Singla' %></title>
+  <meta name="description" content="Detailed accounting services including GST, Income Tax Return, and PAN Card Assistance.">
+  
+  <link rel="icon" href="/img/favicon.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/components.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <%- include('../partials/navbar') %>
+
+  <main id="main-content">
+    <!-- Page Hero -->
+    <section class="section section-dark hero-short">
+      <div class="container container-sm text-center">
+        <span class="eyebrow fade-up">Our Expertise</span>
+        <h1 class="fade-up">Professional Services</h1>
+        <p class="fade-up">Precision-driven compliance and taxation solutions for individuals and businesses.</p>
+      </div>
+    </section>
+
+    <!-- Services List (from DB) -->
+    <% if (typeof services !== 'undefined' && services.length > 0) { %>
+      <% services.forEach((service, index) => { %>
+        <section id="<%= service.slug %>" class="section <%= index % 2 === 0 ? 'section-light' : 'section-surface' %>">
+          <div class="container">
+            <div class="grid grid-2 align-center">
+              <% if (index % 2 !== 0) { %>
+                <div class="service-image fade-up order-last-mobile">
+                  <!-- Placeholder image -->
+                  <div style="background: var(--line); width: 100%; aspect-ratio: 4/3; border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; color: var(--ink-soft);">
+                    [Illustration: <%= service.title %>]
+                  </div>
+                </div>
+              <% } %>
+              
+              <div class="service-content fade-up">
+                <span class="badge badge-dark mb-2"><%= service.slug.toUpperCase() %></span>
+                <h2><%= service.title %></h2>
+                <p class="lead mt-2"><%= service.description || service.summary %></p>
+                <div class="mt-4">
+                  <h4>What you get:</h4>
+                  <ul style="padding-left: 20px; margin-top: 10px; color: var(--ink-soft);">
+                    <li>End-to-end processing and follow-up.</li>
+                    <li>Complete accuracy and timely filing.</li>
+                    <li>Transparent fee structure.</li>
+                  </ul>
+                </div>
+                <div class="mt-4">
+                  <a href="/contact?service=<%= service.id %>" class="btn btn-primary">Enquire about <%= service.title %></a>
+                </div>
+              </div>
+
+              <% if (index % 2 === 0) { %>
+                <div class="service-image fade-up">
+                  <!-- Placeholder image -->
+                  <div style="background: var(--line); width: 100%; aspect-ratio: 4/3; border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; color: var(--ink-soft);">
+                    [Illustration: <%= service.title %>]
+                  </div>
+                </div>
+              <% } %>
+            </div>
+          </div>
+        </section>
+      <% }); %>
+    <% } %>
+
+    <!-- FAQ Accordion -->
+    <section class="section section-dark">
+      <div class="container container-sm">
+        <div class="text-center fade-up mb-4">
+          <h2>Frequently Asked Questions</h2>
+        </div>
+        <div class="faq-list mt-4 fade-up">
+          <details style="margin-bottom: 16px; border-bottom: 1px solid var(--line); padding-bottom: 16px;">
+            <summary style="cursor: pointer; font-weight: 600; font-size: 1.1rem; list-style-position: inside;">What documents do I need for ITR?</summary>
+            <p class="mt-2 text-sm color-text-lo" style="padding-left: 16px;">Typically, you need Form 16 (for salaried), PAN, Aadhaar, bank statements, and investment proofs (80C, 80D, etc.).</p>
+          </details>
+          <details style="margin-bottom: 16px; border-bottom: 1px solid var(--line); padding-bottom: 16px;">
+            <summary style="cursor: pointer; font-weight: 600; font-size: 1.1rem; list-style-position: inside;">How long does GST registration take?</summary>
+            <p class="mt-2 text-sm color-text-lo" style="padding-left: 16px;">Once all documents are submitted and verified, it usually takes 3-7 working days to receive your GSTIN.</p>
+          </details>
+          <details style="padding-bottom: 16px;">
+            <summary style="cursor: pointer; font-weight: 600; font-size: 1.1rem; list-style-position: inside;">Can you help with PAN card corrections?</summary>
+            <p class="mt-2 text-sm color-text-lo" style="padding-left: 16px;">Yes, we handle new applications, corrections (name, dob mismatch), and Aadhaar-PAN linking.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <%- include('../partials/footer') %>
+
+  <script src="/js/main.js" defer></script>
+  <script src="/js/parallax.js" defer></script>
+</body>
+</html>

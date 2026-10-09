@@ -1,0 +1,5 @@
+# Modules Directory
+Stores modular domain feature logic:
+- modules/public
+- modules/contact
+- modules/admin

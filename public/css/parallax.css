@@ -1,0 +1,211 @@
+/**
+ * Ajay Singla Portfolio - Parallax, Motion & Accessibility Stylesheet
+ * Path: public/css/parallax.css
+ * Milestone 2: Design System & Styling
+ */
+
+:root {
+  --reveal-distance: 24px;
+  --reveal-duration: 600ms;
+  --reveal-timing-function: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --btn-lift-distance: -2px;
+  --card-lift-distance: -4px;
+  --focus-outline-width: 2px;
+  --focus-outline-offset: 2px;
+}
+
+/* ==========================================================================
+   1. Hero Parallax Container & Layers
+   ========================================================================== */
+.hero-parallax-container {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--bg-0, #0B0B0C);
+  color: var(--text-hi, #F5F5F5);
+  min-height: 560px;
+  display: flex;
+  align-items: center;
+}
+
+/* Parallax Canvas (15% vertical over-bleed prevents detachment during fast scroll) */
+.parallax-canvas {
+  position: absolute;
+  top: -15%;
+  left: 0;
+  width: 100%;
+  height: 130%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* Base Parallax Layer */
+.parallax-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Layer 1: Deep Precision Coordinate Grid (Speed: 0.2x) */
+.parallax-layer-grid {
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 48px 48px;
+  background-position: center center;
+  opacity: 0.8;
+}
+
+/* Layer 2: Mid-ground Architectural Geometry (Speed: 0.4x) */
+.parallax-layer-accents {
+  background-image:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(45deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 144px 144px;
+  background-position: 24px 24px;
+  opacity: 0.6;
+}
+
+/* Layer 3: Foreground Atmospheric Radial Spotlight (Speed: 0.6x) */
+.parallax-layer-glow {
+  background: radial-gradient(
+    circle at 75% 35%,
+    rgba(255, 255, 255, 0.06) 0%,
+    rgba(255, 255, 255, 0.015) 35%,
+    transparent 70%
+  );
+  opacity: 0.9;
+}
+
+/* Hero Foreground Content */
+.hero-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding-top: var(--space-8, 128px);
+  padding-bottom: var(--space-8, 128px);
+}
+
+@media (max-width: 767.98px) {
+  .hero-content {
+    padding-top: var(--space-64, 64px);
+    padding-bottom: var(--space-64, 64px);
+  }
+}
+
+/* ==========================================================================
+   2. Mobile Parallax Disablement (< 768px Viewports)
+   ========================================================================== */
+@media (max-width: 767.98px) {
+  .parallax-canvas {
+    top: 0;
+    height: 100%;
+  }
+
+  .parallax-layer {
+    transform: none !important;
+    will-change: auto !important;
+  }
+}
+
+/* ==========================================================================
+   3. Section Scroll Reveals (IntersectionObserver)
+   ========================================================================== */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translate3d(0, var(--reveal-distance), 0);
+  transition: 
+    opacity var(--reveal-duration) var(--reveal-timing-function),
+    transform var(--reveal-duration) var(--reveal-timing-function);
+  will-change: opacity, transform;
+}
+
+.reveal-on-scroll.is-revealed {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  will-change: auto;
+}
+
+.reveal-delay-1 { transition-delay: 100ms; }
+.reveal-delay-2 { transition-delay: 200ms; }
+.reveal-delay-3 { transition-delay: 300ms; }
+.reveal-delay-4 { transition-delay: 400ms; }
+
+/* No-JS Fallback */
+html:not(.js) .reveal-on-scroll {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* ==========================================================================
+   4. Prefers-Reduced-Motion Accessibility Overrides
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  html {
+    scroll-behavior: auto !important;
+  }
+
+  .parallax-layer {
+    transform: none !important;
+    will-change: auto !important;
+    transition: none !important;
+  }
+
+  .reveal-on-scroll {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    will-change: auto !important;
+  }
+
+  .btn:hover,
+  .btn:active,
+  .card:hover,
+  .stat-tile:hover,
+  .process-card:hover {
+    transform: none !important;
+  }
+}
+
+/* ==========================================================================
+   5. Forced-Colors Mode (High Contrast Windows Accessibility)
+   ========================================================================== */
+@media (forced-colors: active) {
+  .parallax-canvas {
+    display: none;
+  }
+
+  .btn,
+  .card,
+  .badge,
+  .navbar {
+    border: 1px solid ButtonText !important;
+  }
+
+  .btn-primary {
+    background-color: ButtonText !important;
+    color: ButtonFace !important;
+  }
+
+  a:focus-visible,
+  button:focus-visible,
+  .btn:focus-visible {
+    outline: 2px solid Highlight !important;
+  }
+}
